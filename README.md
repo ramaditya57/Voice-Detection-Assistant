@@ -75,6 +75,6 @@ npm run tauri dev
 ```text
 ├── src-tauri/
 ├── src/
-└── package.json
+├── package.json
 └── README.md
 ```

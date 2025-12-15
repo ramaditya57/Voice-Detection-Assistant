@@ -51,19 +51,13 @@ Built with **Tauri v2**, **React**, **TypeScript**, and **Rust** for performance
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-username/voice-dictation-app.git
-cd voice-dictation-app
+git clone https://github.com/ramaditya57/Voice-Detection-Assistant.git
+cd Voice-Detection-Assistant
 ```
 
 ### Install Dependencies
 ```bash
 npm install
-```
-
-### Environment Variables
-Create a `.env` file:
-```env
-VITE_DEEPGRAM_API_KEY=your_deepgram_api_key_here
 ```
 
 ---
@@ -83,9 +77,3 @@ npm run tauri dev
 ├── src/
 └── package.json
 ```
-
----
-
-## 📄 License
-
-MIT License

@@ -4,7 +4,7 @@ import { Mic, Square, ArrowRight, Trash2, Loader2 } from "lucide-react";
 interface ControlsProps {
   isRecording: boolean;
   hasText: boolean;
-  isInserting: boolean; // <--- Add this
+  isInserting: boolean;
   onStart: () => void;
   onStop: () => void;
   onClear: () => void;
@@ -21,7 +21,7 @@ export const Controls: React.FC<ControlsProps> = ({
         className={`mic-button ${isRecording ? 'recording' : ''}`}
         onMouseDown={onStart}
         onMouseUp={onStop}
-        disabled={isInserting} // Disable mic while typing to prevent conflicts
+        disabled={isInserting}
       >
         {isRecording ? <Square fill="currentColor" /> : <Mic size={32} />}
       </button>
@@ -40,7 +40,7 @@ export const Controls: React.FC<ControlsProps> = ({
         <button 
           type='button' 
           onClick={onInsert} 
-          disabled={!hasText || isInserting} // Disable to prevent double-clicks
+          disabled={!hasText || isInserting}
           className="action-btn primary" 
           title="Insert Text"
         >
@@ -58,7 +58,6 @@ export const Controls: React.FC<ControlsProps> = ({
         </button>
       </div>
       
-      {/* Simple style for the spinner if you don't have one in CSS yet */}
       <style>{`
         .spin-animation { animation: spin 1s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

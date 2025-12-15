@@ -16,16 +16,15 @@ export function useTranscriber() {
 
   const deepgramRef = useRef<LiveClient | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
-  const streamRef = useRef<MediaStream | null>(null); // Track the stream to close it properly
+  const streamRef = useRef<MediaStream | null>(null);
 
   const startRecording = useCallback(async () => {
-    // 1. GUARD: Prevent starting if already running or connecting
     if (isRecording || connectionState === "connecting") return;
 
     try {
       setConnectionState("connecting");
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      streamRef.current = stream; // Save stream to refs
+      streamRef.current = stream;
 
       const deepgram = createClient(DEEPGRAM_API_KEY);
       const connection = deepgram.listen.live({
@@ -65,18 +64,15 @@ export function useTranscriber() {
   }, [isRecording, connectionState]);
 
   const stopRecording = useCallback(() => {
-    // Stop Media Recorder
     if (mediaRecorderRef.current?.state !== "inactive") {
       mediaRecorderRef.current?.stop();
     }
 
-    // Stop Microphone Stream (Releases the "Red Dot" on tab)
     if (streamRef.current) {
       streamRef.current.getTracks().forEach((track) => track.stop());
       streamRef.current = null;
     }
 
-    // Stop Deepgram
     if (deepgramRef.current) {
       deepgramRef.current.finish();
       deepgramRef.current = null;

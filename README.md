@@ -76,4 +76,5 @@ npm run tauri dev
 ├── src-tauri/
 ├── src/
 └── package.json
+└── README.md
 ```
